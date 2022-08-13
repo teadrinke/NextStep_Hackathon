@@ -1,0 +1,58 @@
+body {
+    /* background-color: #F1F7FF; */
+    background-color: #CFE8FC;
+}
+
+.card1 {
+    background-color: #F1F7FF;
+}
+
+.question-section {
+    width: 100%;
+    position: relative;
+    background-color: #F1F7FF;
+}
+
+.question-count {
+    margin-bottom: 20px;
+}
+
+.question-count span {
+    font-size: 28px;
+}
+
+.question-text {
+    margin-bottom: 12px;
+}
+
+.answer-section {
+    /* width: 25%; */
+    /* display: flex;
+    flex-direction: row;
+    justify-content: space-between; */
+    border: none;
+}
+
+.answerBtn {
+    border-radius: 5px;
+}
+
+.answerBtn:hover {
+    background-color: #006403;
+    color: whitesmoke;
+}
+
+answerBtn:focus {
+    outline: none;
+}
+
+.drImg {
+    width: 40%;
+    text-align: center;
+}
+
+img {
+    height: 75%;
+    width: 50%;
+    margin-top: 5vh;
+}
