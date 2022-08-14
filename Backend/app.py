@@ -45,7 +45,7 @@ def index() :
         print(type(predictionList))
         return predictionList
 
-    return "hello world!"
+    return "NextStep Hackathon!"
 
 
 
