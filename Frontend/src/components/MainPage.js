@@ -2,28 +2,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../css/Question.css";
 import doctorImg from "../img/doctor.png";
+import homepage from "../img/homepage.png";
 
 const MainPage = () => {
-  //   const body = {
-  //     name: "Gaurav",
-  //     email: "gauravsomani52750@gmail.com",
-  //   };
-
-  //   useEffect(() => {
-  //     axios
-  //       .post("http://localhost:5000/", {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body,
-  //       })
-  //       .then((response) => {
-  //         console.log("response", response.data);
-  //       })
-  //       .catch((error) => console.log(error));
-  //   });
-
   const questions = [
     {
       questionText: `HighBP : 
@@ -120,30 +101,17 @@ Income scale (INCOME2 see codebook) scale 1-8 1 = less than $10,000 5 = less tha
 
   const handleModal = (e) => {
     setShowQuestion(true);
-    // console.log(showQuestion);
   };
   const handleClose = (e) => {
     setShowQuestion(false);
-    // console.log(showQuestion);
   };
 
   const handleNext = (e) => {
     if (currentQuestion == questions.length - 1) {
-      // setCurrentQuestion(0);
-      // window.alert("Reached the Last Question!")
-      //
       const newData = data;
       newData.push(ans);
       setData(newData);
 
-      // axios.post("http://localhost:3000/", data).then((res) => {
-      //   console.log(data);
-      //   console.log("data posted");
-      //   setShowQuestion(false)
-      // })
-      //   .catch((err) => {
-      //     console.log(err);
-      //   })
       let jsonData = JSON.stringify(data);
       axios
         .post("http://localhost:5000/", {
@@ -290,7 +258,7 @@ Income scale (INCOME2 see codebook) scale 1-8 1 = less than $10,000 5 = less tha
         </section>
       ) : (
         <section className="m-4 p-3">
-          <h2 className="text-center">Heading</h2>
+          <h2 className="text-center">Diabetes</h2>
 
           <section
             className="card1 d-flex"
@@ -307,15 +275,17 @@ Income scale (INCOME2 see codebook) scale 1-8 1 = less than $10,000 5 = less tha
             <div className="drImg">
               <img src={doctorImg} />
             </div>
-            <div className="container p-5 text-center" style={{ width: "60%" }}>
-              <h4>Title</h4>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe
-                facere quo eius odio ducimus delectus tenetur tempora labore
-                nostrum corrupti expedita veritatis, a eaque velit? Ullam
-                dolores dolore culpa deserunt ipsam laudantium aliquam quas
-                labore tenetur? Iusto atque iste velit, sequi magni asperiores
-                in eius voluptatum cupiditate ea, illum veritatis.
+            <div className="container p-5 " style={{ width: "60%" }}>
+              <h4 className="text-center my-1 ">What is diabetes?</h4>
+              <p style={{ fontFamily: "McLaren, cursive ", fontSize: "1rem" }}>
+                Diabetes affects one in ten people worldwide. Understanding the
+                condition is the first step to preventing and managing it.
+                Whether you live with diabetes, care for someone who does or
+                just want to learn more, improve your understanding with one of
+                our free interactive courses. <br />
+                The only conclusive test for diabetes is a blood test. However,
+                the quiz should give you an indication of whether to seek urgent
+                help, or whether to raise the issue at your next GP appointment.
               </p>
               <button
                 className="btn btn-success m-3 text-center "
