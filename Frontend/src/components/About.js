@@ -65,17 +65,10 @@ const About = () => {
                         borderRadius: "2.5vh",
                     }}
                 >
-                    <div className="container p-5 " style={{ width: "90%" }}>
-                        <h4 className="text-center my-1 ">Solution By</h4><br />
-
-                        {/* <div className='about-card'>
-                            <p>Siddhesh Pande :
-                                <a className='m-2 btn btn-primary' href="https://www.linkedin.com/in/siddhesh-pande-b55470205/">LinkedIn</a>
-                                <a className='m-2 btn btn-dark' href="https://github.com/Sidpan19">GitHub</a>
-                            </p>
-                        </div> */}
+                    <div className="container p-5 card-section" style={{ width: "90%" }}>
+                        <h4 className="text-center my-1">Solution By</h4><br />
                         <section className='d-flex container-fluid'>
-                            <div className='about-card text-center m-3'>
+                            <div className='about-card text-center m-2'>
                                 <img className='about-image' src={Siddhesh} alt="" />
                                 <br />
                                 <p className='m-1'>Siddhesh Pande</p>
@@ -83,7 +76,7 @@ const About = () => {
                                 <a className='m-2 btn btn-light' href="https://www.linkedin.com/in/siddhesh-pande-b55470205"><img style={{ margin: "0" }} src={linkedin} alt="" /></a>
                                 <a className='m-2 btn btn-light' href="https://github.com/Sidpan19"><img style={{ margin: "0" }} src={github} alt="" /></a>
                             </div>
-                            <div className='about-card text-center m-3'>
+                            <div className='about-card text-center m-2'>
                                 <img className='about-image' src={Gaurav} alt="" />
                                 <br />
                                 <p className='m-1'>Gaurav Somani</p>
@@ -91,7 +84,7 @@ const About = () => {
                                 <a className='m-2 btn btn-light' href="https://www.linkedin.com/in/gaurav-somani-294233218"><img style={{ margin: "0" }} src={linkedin} alt="" /></a>
                                 <a className='m-2 btn btn-light' href="https://github.com/gaurav-750/"><img style={{ margin: "0" }} src={github} alt="" /></a>
                             </div>
-                            <div className='about-card text-center m-3'>
+                            <div className='about-card text-center m-2'>
                                 <img className='about-image' src={Omkar} alt="" />
                                 <br />
                                 <p className='m-1'>Omkar Kulkarni</p>
@@ -99,7 +92,7 @@ const About = () => {
                                 <a className='m-2 btn btn-light' href="https://www.linkedin.com/in/omkar-kulkarni-5b1693214/"><img style={{ margin: "0" }} src={linkedin} alt="" /></a>
                                 <a className='m-2 btn btn-light' href="https://github.com/OmkarK2553"><img style={{ margin: "0" }} src={github} alt="" /></a>
                             </div>
-                            <div className='about-card text-center m-3'>
+                            <div className='about-card text-center m-2'>
                                 <img className='about-image' src={Shashank} alt="" />
                                 <br />
                                 <p className='m-1'>Shashank Rathi</p>

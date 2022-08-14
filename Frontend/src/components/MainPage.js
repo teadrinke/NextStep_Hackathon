@@ -310,13 +310,9 @@ Income scale 1-8\n
               <img src={doctorImg} />
             </div>
             <div className="container p-5 " style={{ width: "60%" }}>
-              <h4 className="text-center my-1 ">What is diabetes?</h4>
+              <h4 className="text-center my-2 ">What is diabetes?</h4>
               <p style={{ fontFamily: "McLaren, cursive ", fontSize: "1rem" }}>
-                Diabetes affects one in ten people worldwide. Understanding the
-                condition is the first step to preventing and managing it.
-                Whether you live with diabetes, care for someone who does or
-                just want to learn more, improve your understanding with one of
-                our free interactive courses. <br />
+                Diabetes is a disease that affects your body’s ability to produce or use insulin.Insulin is a hormone.When your body turns the food you eat into energy (also called sugar or glucose), insulin is released to help transport this energy to the cells.Insulin acts as a “key.” Its chemical message tells the cell to open and receive glucose.If you produce little or no insulin, or are insulin resistant, too much sugar remains in your blood.Blood glucose levels are higher than normal for individuals with diabetes. <br />
                 <br />
                 <h5 className="text-center my-1">Why to take a quiz?</h5>
                 <p>
