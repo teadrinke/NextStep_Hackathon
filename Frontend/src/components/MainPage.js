@@ -157,7 +157,7 @@ Income scale (INCOME2 see codebook) scale 1-8 1 = less than $10,000 5 = less tha
       const newData = data;
       newData.push(ans);
       setData(newData);
-
+      window.alert("Thank You! Your Response will be generated soon!")
       // axios.post("http://localhost:3000/", data).then((res) => {
       //   console.log(data);
       //   console.log("data posted");
@@ -195,6 +195,7 @@ Income scale (INCOME2 see codebook) scale 1-8 1 = less than $10,000 5 = less tha
       }
       setData(newData);
     }
+    // newAns = "";
     console.log(data);
   }
   const handlePrevious = (e) => {
@@ -214,9 +215,12 @@ Income scale (INCOME2 see codebook) scale 1-8 1 = less than $10,000 5 = less tha
     console.log(ans);
   }
 
+  // let newAns = "";
   const handleInputChange = (e) => {
     setIsAnswered(true)
+    // newAns.concat(e.target.value);
     setAns(Number(e.target.value))
+    // e.target.value = "";
     console.log(e.target.value);
     console.log(ans);
   }
