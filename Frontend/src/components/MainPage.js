@@ -2,11 +2,15 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../css/Question.css";
 import doctorImg from "../img/doctor.png";
-import homepage from "../img/homepage.png";
+import Loader from "./Loader";
+import { useNavigate } from "react-router-dom";
+import Result from "./Result";
 
 const MainPage = () => {
   const questions = [
     {
+      questionText: "Hire the \ntop 1% \nfreelance talent",
+
       questionText: `Do you have a High BP?`,
     },
     {
@@ -46,10 +50,12 @@ const MainPage = () => {
       questionText: `Was there a time in the past 12 months when you needed to see a doctor but could not because of cost?`,
     },
     {
-      questionText: "Would you say that in general your health is: \nScale 1-5 :\n1 = excellent 2 = very good 3 = good 4 = fair 5 = poor",
+      questionText:
+        "Would you say that in general your health is: \nScale 1-5 :\n1 = excellent 2 = very good 3 = good 4 = fair 5 = poor",
     },
     {
-      questionText: "Now thinking about your mental health, which includes stress, depression, and problems with emotions, for how many days during the past 30 days was your mental health not good?\nScale 1-30 days",
+      questionText:
+        "Now thinking about your mental health, which includes stress, depression, and problems with emotions, for how many days during the past 30 days was your mental health not good?\nScale 1-30 days",
     },
     {
       questionText: `Now thinking about your physical health, for how many days during the past 30 days was your physical health not good? \n
@@ -90,6 +96,11 @@ Income scale 1-8\n
   const [isAnswered, setIsAnswered] = useState(false);
   const [ans, setAns] = useState();
   const [inputVal, setInputVal] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState({});
+  const [showResult, setShowResult] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleModal = (e) => {
     setShowQuestion(true);
@@ -104,7 +115,9 @@ Income scale 1-8\n
       newData.push(ans);
       setData(newData);
 
-      window.alert("Thank you! Your result will be displayed soon!")
+      //setting off the modal
+      setShowQuestion(false);
+      setLoading(true);
 
       let jsonData = JSON.stringify(data);
       axios
@@ -116,9 +129,20 @@ Income scale 1-8\n
           jsonData,
         })
         .then((response) => {
-          console.log("response:", response);
-          console.log("response", response.data);
-          console.log(jsonData);
+          let result = response.data;
+
+          let arrOfNum = [];
+          arrOfNum.push(result[0][0]);
+          arrOfNum.push(result[0][1]);
+          arrOfNum.push(result[0][2]);
+
+          const max = Math.max(...arrOfNum);
+          const index = arrOfNum.indexOf(max);
+
+          setResult({ max, index });
+          setShowResult(true);
+          setLoading(false);
+          // return navigate("/result");
         })
         .catch((error) => console.log("Error in axios post req", error));
     } else {
@@ -158,7 +182,7 @@ Income scale 1-8\n
   // let newAns = "";
   const handleInputChange = (e) => {
     setIsAnswered(true);
-    setInputVal(e.target.value)
+    setInputVal(e.target.value);
     setAns(Number(e.target.value));
     console.log(e.target.value);
     console.log(ans);
@@ -167,6 +191,14 @@ Income scale 1-8\n
   useEffect(() => {
     document.title = "Diabetes Tracker";
   }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (showResult) {
+    return <Result result={result} />;
+  }
 
   return (
     <>
@@ -202,7 +234,7 @@ Income scale 1-8\n
                 X
               </button>
             </div>
-            <div className="question-text p-3">
+            <div style={{ padding: "5px" }}>
               {questions[currentQuestion].questionText}
             </div>
             <div className="answer-section text-center">
@@ -211,12 +243,12 @@ Income scale 1-8\n
                                 ))} */}
 
               {currentQuestion == 3 ||
-                currentQuestion == 13 ||
-                currentQuestion == 14 ||
-                currentQuestion == 15 ||
-                currentQuestion == 18 ||
-                currentQuestion == 19 ||
-                currentQuestion == 20 ? (
+              currentQuestion == 13 ||
+              currentQuestion == 14 ||
+              currentQuestion == 15 ||
+              currentQuestion == 18 ||
+              currentQuestion == 19 ||
+              currentQuestion == 20 ? (
                 <input
                   type="text"
                   name="inputQue"
@@ -237,7 +269,6 @@ Income scale 1-8\n
                     onClick={() => handleAnswer(0)}
                   >
                     {currentQuestion === 17 ? "Female" : "No"}
-
                   </button>
                 </div>
               )}
@@ -284,13 +315,19 @@ Income scale 1-8\n
                 condition is the first step to preventing and managing it.
                 Whether you live with diabetes, care for someone who does or
                 just want to learn more, improve your understanding with one of
-                our free interactive courses. <br /><br />
+                our free interactive courses. <br />
+                <br />
                 <h5 className="text-center my-1">Why to take a quiz?</h5>
-                <p>The quiz below will help ypu know your chances of being a diabetic or prediabetic person.</p>
-                <p style={{ fontSize: "14px" }}>Note : The only conclusive test for diabetes is a blood test. However,
-                  the quiz should give you an indication of whether to seek urgent
-                  help, or whether to raise the issue at your next GP appointment.</p>
-
+                <p>
+                  The quiz below will help ypu know your chances of being a
+                  diabetic or prediabetic person.
+                </p>
+                <p style={{ fontSize: "14px" }}>
+                  Note : The only conclusive test for diabetes is a blood test.
+                  However, the quiz should give you an indication of whether to
+                  seek urgent help, or whether to raise the issue at your next
+                  GP appointment.
+                </p>
               </p>
               <button
                 className="btn btn-success m-3 text-center "

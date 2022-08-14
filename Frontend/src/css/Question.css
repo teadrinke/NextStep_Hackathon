@@ -1,16 +1,16 @@
 body {
     /* background-color: #F1F7FF; */
-    background-color: #CFE8FC;
+    background-color: #cfe8fc;
 }
 
 .card1 {
-    background-color: #F1F7FF;
+    background-color: #f1f7ff;
 }
 
 .question-section {
     width: 100%;
     position: relative;
-    background-color: #F1F7FF;
+    background-color: #f1f7ff;
 }
 
 .question-count {
@@ -50,19 +50,17 @@ answerBtn:focus {
     /* width: 40%; */
     text-align: center;
     justify-content: center;
-    /* display: table; */
 }
 
 img {
     height: 75%;
-    width: 50%;
+    width: 100%;
     position: relative;
     margin-top: 5vh;
     text-align: center;
-    /* display: table-cell; */
 }
 
-@media screen and (min-width:768px) {
+@media screen and (min-width: 768px) {
     .card1 {
         display: flex;
         /* flex-direction: column; */
@@ -73,11 +71,9 @@ img {
     }
 }
 
-@media screen and (max-width:768px) {
+@media screen and (max-width: 768px) {
     .card1 {
         display: flex;
         flex-direction: column;
     }
-
-
 }
