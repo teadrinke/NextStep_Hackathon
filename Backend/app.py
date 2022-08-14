@@ -37,17 +37,15 @@ def index() :
         arr = np.array([lst])
         print("Shape:", arr.shape)
         
-
         prediction = model.predict(arr)
 
         #sending the predicted result to frontend
-        print("The prediction is:", prediction)
         predictionList = prediction.tolist()
         print('predictionList', predictionList)
         print(type(predictionList))
         return predictionList
 
-    return "hello world!"
+    return "NextStep Hackathon!"
 
 
 
