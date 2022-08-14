@@ -7,8 +7,7 @@ import homepage from "../img/homepage.png";
 const MainPage = () => {
   const questions = [
     {
-      questionText: `HighBP : 
-            0 = no high BP 1 = high BP`,
+      questionText: "Hire the \ntop 1% \nfreelance talent",
     },
     {
       questionText: `HighChol :
@@ -203,7 +202,7 @@ Income scale (INCOME2 see codebook) scale 1-8 1 = less than $10,000 5 = less tha
                 X
               </button>
             </div>
-            <div className="question-text p-3">
+            <div style={{ padding: "5px" }}>
               {questions[currentQuestion].questionText}
             </div>
             <div className="answer-section text-center">
