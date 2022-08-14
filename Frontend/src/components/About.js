@@ -5,6 +5,7 @@ import linkedin from "../img/linkedin.svg"
 import Gaurav from "../img/Gaurav.png"
 import Shashank from "../img/Shashank.png"
 import Omkar from "../img/Omkar.jpg"
+import Siddhesh from "../img/Siddhesh.jpeg"
 
 const About = () => {
     return (
@@ -75,7 +76,7 @@ const About = () => {
                         </div> */}
                         <section className='d-flex container-fluid'>
                             <div className='about-card text-center m-3'>
-                                <img className='about-image' src={Gaurav} alt="" />
+                                <img className='about-image' src={Siddhesh} alt="" />
                                 <br />
                                 <p className='m-1'>Siddhesh Pande</p>
                                 <p>ML Model</p>
