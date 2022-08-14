@@ -50,6 +50,7 @@ answerBtn:focus {
     /* width: 40%; */
     text-align: center;
     justify-content: center;
+    /* display: table; */
 }
 
 img {
@@ -58,6 +59,7 @@ img {
     position: relative;
     margin-top: 5vh;
     text-align: center;
+    /* display: table-cell; */
 }
 
 @media screen and (min-width:768px) {
