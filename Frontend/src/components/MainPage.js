@@ -2,94 +2,92 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../css/Question.css";
 import doctorImg from "../img/doctor.png";
-import homepage from "../img/homepage.png";
+import Loader from "./Loader";
+import { useNavigate } from "react-router-dom";
+import Result from "./Result";
 
 const MainPage = () => {
   const questions = [
     {
       questionText: "Hire the \ntop 1% \nfreelance talent",
+
+      questionText: `Do you have a High BP?`,
     },
     {
-      questionText: `HighChol :
-0 = no high cholesterol 1 = high cholesterol`,
+      questionText: `Do you have a High Cholesterol?`,
     },
     {
-      questionText: `CholCheck
-0 = no cholesterol check in 5 years 1 = yes cholesterol check in 5 years`,
+      questionText: `Have yoe checked your cholesterol in the last 5 years?`,
     },
     {
-      questionText: `BMI
-Body Mass Index`,
+      questionText: `Enter your BMI(Body Mass Index)`,
     },
     {
-      questionText: `Smoker
-Have you smoked at least 100 cigarettes in your entire life? [Note: 5 packs = 100 cigarettes] 0 = no 1 = yes`,
+      questionText: `Do you smoke frequently? [Note: 5 packs = 100 cigarettes]`,
     },
     {
-      questionText: `Stroke
-(Ever told) you had a stroke. 0 = no 1 = yes`,
+      questionText: `Have you ever had a stroke?`,
     },
     {
-      questionText: `HeartDiseaseorAttack
-coronary heart disease (CHD) or myocardial infarction (MI) 0 = no 1 = yes`,
+      questionText: `Have you had any coronary heart disease (CHD) or myocardial infarction (MI)?`,
     },
     {
-      questionText: `PhysActivity
-physical activity in past 30 days - not including job 0 = no 1 = yes`,
+      questionText: `Have you done any physical activity in past 30 days?`,
     },
     {
-      questionText: `Fruits
-Consume Fruit 1 or more times per day 0 = no 1 = yes`,
+      questionText: `Do you consume Fruit 1 or more times per day?`,
     },
     {
-      questionText: `Veggies
-Consume Vegetables 1 or more times per day 0 = no 1 = yes`,
+      questionText: `Do you consume Vegetables 1 or more times per day?`,
     },
     {
-      questionText: `HvyAlcoholConsump
-Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) 0 = no 1 = yes`,
+      questionText: `Are you a heavy drinker? (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week)`,
     },
     {
-      questionText: `AnyHealthcare
-Have any kind of health care coverage, including health insurance, prepaid plans such as HMO, etc. 0 = no 1 = yes`,
+      questionText: `Do you have any kind of health care coverage, including health insurance, prepaid plans such as HMO, etc?`,
     },
     {
-      questionText: `NoDocbcCost
-Was there a time in the past 12 months when you needed to see a doctor but could not because of cost? 0 = no 1 = yes`,
+      questionText: `Was there a time in the past 12 months when you needed to see a doctor but could not because of cost?`,
     },
     {
-      questionText: `GenHlth
-Would you say that in general your health is: scale 1-5 1 = excellent 2 = very good 3 = good 4 = fair 5 = poor
-`,
+      questionText:
+        "Would you say that in general your health is: \nScale 1-5 :\n1 = excellent 2 = very good 3 = good 4 = fair 5 = poor",
     },
     {
-      questionText: `MentHlth
-Now thinking about your mental health, which includes stress, depression, and problems with emotions, for how many days during the past 30 days was your mental health not good? scale 1-30 days
-`,
+      questionText:
+        "Now thinking about your mental health, which includes stress, depression, and problems with emotions, for how many days during the past 30 days was your mental health not good?\nScale 1-30 days",
     },
     {
-      questionText: `PhysHlth
-Now thinking about your physical health, which includes physical illness and injury, for how many days during the past 30 days was your physical health not good? scale 1-30 days`,
+      questionText: `Now thinking about your physical health, for how many days during the past 30 days was your physical health not good? \n
+      Scale 1-30 days`,
     },
     {
-      questionText: `DiffWalk
-Do you have serious difficulty walking or climbing stairs? 0 = no 1 = yes`,
+      questionText: `Do you have serious difficulty walking or climbing stairs?`,
     },
     {
-      questionText: `Sex
-0 = female 1 = male`,
+      questionText: `Select your Gender`,
     },
     {
-      questionText: `Age
-13-level age category (_AGEG5YR see codebook) 1 = 18-24 9 = 60-64 13 = 80 or older`,
+      questionText: `Age\n
+      13-level age category \n
+      1 = 18-24   9 = 60-64   13 = 80 or older`,
     },
     {
-      questionText: `Education
-Education level (EDUCA see codebook) scale 1-6 1 = Never attended school or only kindergarten 2 = Grades 1 through 8 (Elementary) 3 = Grades 9 through 11 (Some high school) 4 = Grade 12 or GED (High school graduate) 5 = College 1 year to 3 years (Some college or technical school) 6 = College 4 years or more (College graduate)`,
+      questionText: `Education\n
+Education level Scale 1-6 \n
+1 = Never attended school or only kindergarten \n
+2 = Grades 1 through 8 (Elementary) \n
+3 = Grades 9 through 11 (Some high school) \n
+4 = Grade 12 or GED (High school graduate) \n
+5 = College 1 year to 3 years (Some college or technical school) \n
+6 = College 4 years or more (College graduate)`,
     },
     {
-      questionText: `Income
-Income scale (INCOME2 see codebook) scale 1-8 1 = less than $10,000 5 = less than $35,000 8 = $75,000 or more`,
+      questionText: `Income\n
+Income scale 1-8\n
+1 = less than $10,000 \n
+5 = less than $35,000 \n
+8 = $75,000 or more`,
     },
   ];
   const [data, setData] = useState([]);
@@ -97,6 +95,12 @@ Income scale (INCOME2 see codebook) scale 1-8 1 = less than $10,000 5 = less tha
   const [showQuestion, setShowQuestion] = useState(false);
   const [isAnswered, setIsAnswered] = useState(false);
   const [ans, setAns] = useState();
+  const [inputVal, setInputVal] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState({});
+  const [showResult, setShowResult] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleModal = (e) => {
     setShowQuestion(true);
@@ -111,6 +115,10 @@ Income scale (INCOME2 see codebook) scale 1-8 1 = less than $10,000 5 = less tha
       newData.push(ans);
       setData(newData);
 
+      //setting off the modal
+      setShowQuestion(false);
+      setLoading(true);
+
       let jsonData = JSON.stringify(data);
       axios
         .post("http://localhost:5000/", {
@@ -121,9 +129,20 @@ Income scale (INCOME2 see codebook) scale 1-8 1 = less than $10,000 5 = less tha
           jsonData,
         })
         .then((response) => {
-          console.log("respomse:", response);
-          console.log("response", response.data);
-          console.log(jsonData);
+          let result = response.data;
+
+          let arrOfNum = [];
+          arrOfNum.push(result[0][0]);
+          arrOfNum.push(result[0][1]);
+          arrOfNum.push(result[0][2]);
+
+          const max = Math.max(...arrOfNum);
+          const index = arrOfNum.indexOf(max);
+
+          setResult({ max, index });
+          setShowResult(true);
+          setLoading(false);
+          // return navigate("/result");
         })
         .catch((error) => console.log("Error in axios post req", error));
     } else {
@@ -139,6 +158,9 @@ Income scale (INCOME2 see codebook) scale 1-8 1 = less than $10,000 5 = less tha
       }
       setData(newData);
     }
+    setInputVal("");
+
+    // newAns = "";
     console.log(data);
   };
   const handlePrevious = (e) => {
@@ -157,8 +179,10 @@ Income scale (INCOME2 see codebook) scale 1-8 1 = less than $10,000 5 = less tha
     console.log(ans);
   };
 
+  // let newAns = "";
   const handleInputChange = (e) => {
     setIsAnswered(true);
+    setInputVal(e.target.value);
     setAns(Number(e.target.value));
     console.log(e.target.value);
     console.log(ans);
@@ -167,6 +191,14 @@ Income scale (INCOME2 see codebook) scale 1-8 1 = less than $10,000 5 = less tha
   useEffect(() => {
     document.title = "Diabetes Tracker";
   }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (showResult) {
+    return <Result result={result} />;
+  }
 
   return (
     <>
@@ -214,11 +246,13 @@ Income scale (INCOME2 see codebook) scale 1-8 1 = less than $10,000 5 = less tha
               currentQuestion == 13 ||
               currentQuestion == 14 ||
               currentQuestion == 15 ||
+              currentQuestion == 18 ||
               currentQuestion == 19 ||
               currentQuestion == 20 ? (
                 <input
                   type="text"
                   name="inputQue"
+                  value={inputVal}
                   id=""
                   onChange={(e) => handleInputChange(e)}
                 />
@@ -228,13 +262,13 @@ Income scale (INCOME2 see codebook) scale 1-8 1 = less than $10,000 5 = less tha
                     className="answerBtn mx-3 my-2 btn btn-primary"
                     onClick={() => handleAnswer(1)}
                   >
-                    Yes
+                    {currentQuestion === 17 ? "Male" : "Yes"}
                   </button>
                   <button
                     className="answerBtn mx-3 my-2 btn btn-primary"
                     onClick={() => handleAnswer(0)}
                   >
-                    No
+                    {currentQuestion === 17 ? "Female" : "No"}
                   </button>
                 </div>
               )}
@@ -260,7 +294,7 @@ Income scale (INCOME2 see codebook) scale 1-8 1 = less than $10,000 5 = less tha
           <h2 className="text-center">Diabetes</h2>
 
           <section
-            className="card1 d-flex"
+            className="card1"
             style={{
               // border: "0.5px gray solid",
               marginTop: "7.5vh",
@@ -282,9 +316,18 @@ Income scale (INCOME2 see codebook) scale 1-8 1 = less than $10,000 5 = less tha
                 Whether you live with diabetes, care for someone who does or
                 just want to learn more, improve your understanding with one of
                 our free interactive courses. <br />
-                The only conclusive test for diabetes is a blood test. However,
-                the quiz should give you an indication of whether to seek urgent
-                help, or whether to raise the issue at your next GP appointment.
+                <br />
+                <h5 className="text-center my-1">Why to take a quiz?</h5>
+                <p>
+                  The quiz below will help ypu know your chances of being a
+                  diabetic or prediabetic person.
+                </p>
+                <p style={{ fontSize: "14px" }}>
+                  Note : The only conclusive test for diabetes is a blood test.
+                  However, the quiz should give you an indication of whether to
+                  seek urgent help, or whether to raise the issue at your next
+                  GP appointment.
+                </p>
               </p>
               <button
                 className="btn btn-success m-3 text-center "
