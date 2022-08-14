@@ -121,7 +121,7 @@ Income scale 1-8\n
 
       let jsonData = JSON.stringify(data);
       axios
-        .post("http://localhost:5000/", {
+        .post("https://nextstep-flask.herokuapp.com/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -243,18 +243,19 @@ Income scale 1-8\n
                                 ))} */}
 
               {currentQuestion == 3 ||
-              currentQuestion == 13 ||
-              currentQuestion == 14 ||
-              currentQuestion == 15 ||
-              currentQuestion == 18 ||
-              currentQuestion == 19 ||
-              currentQuestion == 20 ? (
+                currentQuestion == 13 ||
+                currentQuestion == 14 ||
+                currentQuestion == 15 ||
+                currentQuestion == 18 ||
+                currentQuestion == 19 ||
+                currentQuestion == 20 ? (
                 <input
                   type="text"
                   name="inputQue"
                   value={inputVal}
                   id=""
                   onChange={(e) => handleInputChange(e)}
+                  autoComplete="off"
                 />
               ) : (
                 <div>
@@ -321,7 +322,7 @@ Income scale 1-8\n
                 <p>
                   The quiz below will help ypu know your chances of being a
                   diabetic or prediabetic person.
-                </p>
+                </p><br />
                 <p style={{ fontSize: "14px" }}>
                   Note : The only conclusive test for diabetes is a blood test.
                   However, the quiz should give you an indication of whether to

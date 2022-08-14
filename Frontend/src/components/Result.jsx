@@ -30,7 +30,11 @@ const Result = ({ result }) => {
         >
           <h4> Our Prediction: {finalPrediction}</h4>
           <h4>Prob : {parseInt(max * 100)} %</h4>
+          <br />
+          <a className="btn btn-primary" href="/">Back</a>
         </div>
+
+
       </section>
     </div>
   );
