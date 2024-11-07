@@ -1,7 +1,7 @@
 **🚀 Deployment Link:** 
 https://pred-diabetes.vercel.app/
 
-**🔍 About the App:**  
+**🔍 Overview:**  
 This app estimates the likelihood of a person being non-diabetic, pre-diabetic, or diabetic, guiding users to make informed health decisions.
 
 **🛠️ Development Process:**  
